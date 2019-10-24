@@ -10,7 +10,8 @@
 
 
 //GLOBAL VARIABLES
-
+// Print out extra options (1 for True, 0 for False)
+int DEBUG = 0;
 // Initial Data Pointer
 float *DATA;
 // Decompressed Data Pointer
@@ -119,21 +120,16 @@ void szCompression(char *config, int *data_dimensions){
 
 		// Compress the data here
 		size_t outsize;
-		gettimeofday(&start, NULL);
+		// gettimeofday(&start, NULL);
 		unsigned char *bytes = SZ_compress(SZ_FLOAT, DATA, &outsize, r5, r4, r3, r2, r1);
-		gettimeofday(&stop, NULL);
-		double time_taken = (double)(stop.tv_usec - start.tv_usec) / 1000000 + (double)(stop.tv_sec - start.tv_sec);
-		printf("Time to Compress: %lf\n", time_taken);
+		// gettimeofday(&stop, NULL);
+		//double time_taken = (double)(stop.tv_usec - start.tv_usec) / 1000000 + (double)(stop.tv_sec - start.tv_sec);
+		//printf("Time to Compress: %lf\n", time_taken);
 
 		printf("Compressed Size in Bytes: %zu\n", outsize);
 
 		if (DEBUG){
 			printf("Successfully compressed data\n");
-
-			// Print out correct compressed value of that spot
-			printf("Previous Value: ");
-			printBits(sizeof(bytes[char_loc]), &bytes[char_loc]);
-			printf("\n");
 		}
 
 		// Decompress the data here
@@ -217,7 +213,7 @@ int main(int argc, char *argv[]){
 		exit(-1);
 	}else {
 		if (DEBUG) {
-			printf("sz config file opened successfully!")
+			printf("sz config file opened successfully!");
 		}
 	}
 	
@@ -269,7 +265,7 @@ int main(int argc, char *argv[]){
 	printf("Original Data Size in Bytes: %ld\n", sizeof(float)*data_size);
 
 	// Call compression injection function
-	szCompression(config, data_dimensions, char_loc, flip_loc);
+	szCompression(config, data_dimensions);
 
 	// Print small before and after if debugging is turned on
 	if (DEBUG){	

@@ -11,7 +11,7 @@
 
 //GLOBAL VARIABLES
 // Print out extra options (1 for True, 0 for False)
-int DEBUG = 0;
+int DEBUG = 1;
 // Initial Data Pointer
 float *DATA;
 // Decompressed Data Pointer
@@ -242,6 +242,9 @@ int main(int argc, char *argv[]){
 		}
 	}
 
+
+
+	printf("TRYING TO COMPRESS\n");
 	// COMPRESS & DECOMPRESS
 	// *******************
 	// Read data from binary file

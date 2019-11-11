@@ -13,13 +13,10 @@ SZFLAGS	= -I $(SZPATH)/include/ $(SZPATH)/lib/libSZ.a $(SZPATH)/lib/libzlib.a $(
 
 
 ## TARGETS
-all: comp_profile comp_inj
+all: comp_profile
 
 comp_profile:	comp_profile.c
 	$(CC) -Wall -g -o comp_profile comp_profile.c $(SZFLAGS)
-comp_inj:	comp_inj.c
-	$(CC) -Wall -g -rdynamic -o comp_inj comp_inj.c $(SZFLAGS)
 clean:
 	rm comp_profile
-	rm comp_inj
 

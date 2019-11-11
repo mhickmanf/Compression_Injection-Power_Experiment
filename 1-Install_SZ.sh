@@ -1,9 +1,15 @@
 #!/bin/bash
 
-cd $SZ_Files
+cd /users/mlhickm/Compression_Power_Experiment/SZ_Files
+pwd
+wait
+pwd
 git clone https://github.com/disheng222/SZ.git
-cd $SZ
+wait
+cd /users/mlhickm/Compression_Power_Experiment/SZ_Files/SZ
+wait
 ./configure --prefix=/users/mlhickm/Compression_Power_Experiment/SZ_Files
+wait
 make clean
 make
 make install

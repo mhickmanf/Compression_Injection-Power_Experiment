@@ -1,6 +1,6 @@
 #!/bin/bash
 
-xterm -e ls
+#xterm -e ls
 
 #open -a Terminal /users/mlhickm/Compression_Power_Experiment/rapl_plot
 #make
@@ -9,7 +9,10 @@ xterm -e ls
 # Launch script in background
 #./my_script.sh &
 # Get its PID so we know how to kill this process
-PID=$!
+#PID=$!
+cmd="pwd"
+nohup $cmd &
+
 # Wait for 2 seconds
 sleep 5
 pwd
@@ -20,4 +23,4 @@ sleep 5
 # That waits until SZ is done compressing/decompressing
 
 # Kill this process
-kill $PID
+#kill $PID

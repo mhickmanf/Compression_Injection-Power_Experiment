@@ -121,17 +121,7 @@ int main (int argc, char **argv)
      
      printf("Start time %lld\n",start_time);
 
-
-     int control;
-     control = 0;
      while(1) {
-	if(control == 50){ // stop after 5 seconds
-		printf("ITS TIME");
-		exit(1);
-	}
-	control++;
-
-
 
         /* Start Counting */
 	printf("Start Counting\n");
@@ -144,6 +134,7 @@ int main (int argc, char **argv)
 
 
         usleep(100000);
+
 
 	printf("Stop Counting\n");
         /* Stop Counting */

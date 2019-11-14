@@ -125,8 +125,8 @@ int main (int argc, char **argv)
      int control;
      control = 0;
      while(1) {
-	if(control == 50){ // stop after 5 seconds
-		printf("ITS TIME");
+	if(control == 300){ // stop after 30 seconds
+		printf("YOU ARE TAKING TOO LONG ... QUIT");
 		exit(1);
 	}
 	control++;

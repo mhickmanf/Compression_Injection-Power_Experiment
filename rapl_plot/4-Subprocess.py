@@ -8,7 +8,16 @@ import subprocess
 def main():
     # Start RAPL
     print("start")
-    cmd = ['sudo','./rapl_plot']
+    cmd = ['sudo','./rapl_plot', 
+            "1-results.PACKAGE_ENERGY_PACKAGE0",
+            "1-results.PACKAGE_ENERGY_PACKAGE1",
+            "1-results.DRAM_ENERGY_PACKAGE0",
+            "1-results.DRAM_ENERGY_PACKAGE1",
+            "1-results.PP0_ENERGY_PACKAGE0",
+            "1-results.PP0_ENERGY_PACKAGE1",
+            "1-results.UNCORE_PACKAGE0",
+            "1-results.UNCORE_PACKAGE1",
+    ]
     SZcmd = ['bash', '/users/mlhickm/Compression_Power_Experiment/2-Test_SZ_Setup.sh']
     
     rapl = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout=subprocess.PIPE)

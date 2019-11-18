@@ -19,23 +19,14 @@ char events[NUM_EVENTS][BUFSIZ]={
   "PP0_ENERGY:PACKAGE0",
   "PP0_ENERGY:PACKAGE1",
 };
-
-char filenames[NUM_EVENTS+2][BUFSIZ]={
-  "results.PACKAGE_ENERGY_PACKAGE0",
-  "results.PACKAGE_ENERGY_PACKAGE1",
-  "results.DRAM_ENERGY_PACKAGE0",
-  "results.DRAM_ENERGY_PACKAGE1",
-  "results.PP0_ENERGY_PACKAGE0",
-  "results.PP0_ENERGY_PACKAGE1",
-  "results.UNCORE_PACKAGE0",
-  "results.UNCORE_PACKAGE1",
-};
-
 FILE *fff[NUM_EVENTS+2];
 
 
 int main (int argc, char **argv)
 {
+
+    if (argc < NUM_EVENTS+1) // expecting NUM_EVENTS file names
+            return -1;
 
     int retval,cid,rapl_cid=-1,numcmp;
     int EventSet = PAPI_NULL;
@@ -45,7 +36,46 @@ int main (int argc, char **argv)
     long long start_time,before_time,after_time;
     double elapsed_time,total_time;
 
-    
+    /*
+    char user_file_name[80];
+    strcpy(user_file_name,  argv[1]);
+    strcat(user_file_name, "_results.PACKAGE_ENERGY_PACKAGE0");
+    printf("Command line arges %s\n", user_file_name);
+    */
+   /*
+   FILE *inputFile = fopen(user_file_name, "w");
+   if (inputFile==NULL) {
+	   fprintf(stderr,"Could not open: %s ||\n", user_file_name);
+           exit(1);
+   }else{
+	   printf("SUCES open userfilename\n\n\n\n\n");
+   }
+   */
+   //strncpy(filenames[0][0], user_input_file, 18);
+
+   // results.PACKAGE_ENERGY_PACKAGE0
+   /*
+   char filenames[NUM_EVENTS+2][BUFSIZ]={
+     "results.PACKAGE_ENERGY_PACKAGE0",
+     "results.PACKAGE_ENERGY_PACKAGE1",
+     "results.DRAM_ENERGY_PACKAGE0",
+     "results.DRAM_ENERGY_PACKAGE1",
+     "results.PP0_ENERGY_PACKAGE0",
+     "results.PP0_ENERGY_PACKAGE1",
+     "results.UNCORE_PACKAGE0",
+     "results.UNCORE_PACKAGE1",
+   };
+   */
+   /*
+   printf("name of file first: %s||\n\n", filenames[2]);
+   FILE *inputFile2 = fopen(filenames[2], "w");
+   if (inputFile2==NULL) {
+           fprintf(stderr,"Could not open: filenames[2]:  %s ||\n", filenames[1]);
+           exit(1);
+   }else{
+           printf("SUCES open filenames[1]\n\n\n\n\n");
+   }
+   */
 
 	/* PAPI Initialization */
      retval = PAPI_library_init( PAPI_VER_CURRENT );
@@ -56,7 +86,6 @@ int main (int argc, char **argv)
 
      numcmp = PAPI_num_components();
      printf("numcmp = %d\n", numcmp);
-
      for(cid=0; cid<numcmp; cid++) {
 	printf("for loop %d\n", cid);
 	if ( (cmpinfo = PAPI_get_component_info(cid)) == NULL) {
@@ -76,7 +105,6 @@ int main (int argc, char **argv)
 	   break;
 	}
      }
-
      printf("cid is now = %d\n", cid);
 
      /* Component not found */
@@ -86,13 +114,14 @@ int main (int argc, char **argv)
      }
 
      printf("Trying to open output files\n");
-
      /* Open output files */
      for(i=0;i<NUM_EVENTS+2;i++) {
-        fff[i]=fopen(filenames[i],"w");
+        fff[i]=fopen(argv[i+1],"w");
 	if (fff[i]==NULL) {
-	   fprintf(stderr,"Could not open %s\n",filenames[i]);
+	   fprintf(stderr,"Could not open: file %d,  %s ||\n",i,argv[i+1]);
 	   exit(1);
+	}else{
+		printf("not a problem");
 	}
      }
 

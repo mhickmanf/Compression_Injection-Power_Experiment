@@ -1,8 +1,8 @@
 CC = gcc
 CFLAGS = -O2 -Wall
 LFLAGS = 
-PAPI_INCLUDE = /users/mlhickm/Compression_Power_Experiment/papi/src
-PAPI_LIBRARY = /users/mlhickm/Compression_Power_Experiment/papi/src/libpapi.a
+PAPI_INCLUDE = /users/mlhickm/Compression_Injection-Power_Experiment/papi/src
+PAPI_LIBRARY = /users/mlhickm/Compression_Injection-Power_Experiment/papi/src/libpapi.a
 
 all:	rapl_plot
 

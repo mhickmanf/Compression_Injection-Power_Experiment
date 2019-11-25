@@ -34,7 +34,7 @@ def main():
             sys.argv[8],
     ]
 
-    SZcmd = ['bash', '/users/mlhickm/Compression_Injection-Power_Experiment/2-Test_SZ_Setup.sh']
+    SZcmd = ['bash', '/users/mlhickm/Compression_Injection-Power_Experiment/injection_experiments.sh']
     timeout_limit = 7 # If taking too long bc injection broke stuff, go ahead and kill experiment
 
     rapl = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout=subprocess.PIPE)
@@ -42,8 +42,8 @@ def main():
     # Call suprocess to run SZ
     print("Starting SZ")
     time.sleep(1)
-    #p = subprocess.Popen(SZcmd, stdin = subprocess.PIPE, stdout=subprocess.PIPE)
-    proc_result, child_process_id = popen_timeout(SZcmd, timeout_limit)    
+    p = subprocess.Popen(SZcmd, stdin = subprocess.PIPE, stdout=subprocess.PIPE)
+    #proc_result, child_process_id = popen_timeout(SZcmd, timeout_limit)    
     time.sleep(1)
     #print(p.communicate()) # You can use this to confirm that it worked
     print("Ending SZ")

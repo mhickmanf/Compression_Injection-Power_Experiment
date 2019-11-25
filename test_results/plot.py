@@ -1,6 +1,6 @@
 # Example Call
-	# python3 plot.py "test/results.PACKAGE_ENERGY_PACKAGE0","test/results.PACKAGE_ENERGY_PACKAGE1" yes
-	# python3 plot.py "test/results.PACKAGE_ENERGY_PACKAGE0" no
+	# python3 plot.py "test/results.PACKAGE_ENERGY_PACKAGE0","test/results.PACKAGE_ENERGY_PACKAGE1" yes output_file.csv
+	# python3 plot.py "test/results.PACKAGE_ENERGY_PACKAGE0" no output_file.csv
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -27,16 +27,19 @@ def main():
 	plot = str2bool(sys.argv[2]) # True or False should we make a plot
 	
 	input_files = sys.argv[1].split(',')
+	output_file = open(sys.argv[3], 'a')
+
 	for input_file in input_files:
 		print ("Input File: ", input_file)
 		data = pd.read_csv(input_file, header=None, delim_whitespace=True) 
 		data = data.iloc[:, 0:2]
 		
+		# Average power for this run
 		average_power = data[1].mean()
-		print("Average power = ",average_power,"\n")
+		#print("Average power = ",average_power,"\n")
 
-		# We will want to save this to a file later
-
+		# Save this to a file
+		output_file.write("%s\n" % average_power)
 
 		if plot == True:
 			max_power = data[1].max()
@@ -53,6 +56,11 @@ def main():
 			#plt.show()
 			plt.savefig(input_file+".png")
 
+	output_file.close()
 
+	# Calculate average of averages (total average of experiment)
+	data2 = pd.read_csv(sys.argv[3], header=None) 
+	average_average_power = data2[0].mean()
+	print("Average power of experiments = ",average_average_power,"\n")
 if __name__ == '__main__':
 	main()

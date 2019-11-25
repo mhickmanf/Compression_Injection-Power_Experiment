@@ -3,7 +3,7 @@
 # Get its PID so we know how to kill this process
 #PID=$!
 
-cd /users/mlhickm/Compression_Power_Experiment/rapl_plot
+cd /users/mlhickm/Compression_Injection-Power_Experiment/rapl_plot
 make
 
 # for loop of numbers

@@ -2,8 +2,7 @@ import subprocess
 import time
 import os
 import signal
-import subprocess
-
+import sys
 
 def main():
     # Start RAPL
@@ -18,6 +17,10 @@ def main():
             "1-results.UNCORE_PACKAGE0",
             "1-results.UNCORE_PACKAGE1",
     ]
+    
+    
+    
+    
     SZcmd = ['bash', '/users/mlhickm/Compression_Power_Experiment/2-Test_SZ_Setup.sh']
     
     rapl = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout=subprocess.PIPE)

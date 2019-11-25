@@ -5,28 +5,8 @@
 
 cd /users/mlhickm/Compression_Power_Experiment/rapl_plot
 make
-python3 4-Subprocess.py
 
+# for loop of numbers
+# experiment_id
 
-#xterm -e ls
-
-#open -a Terminal /users/mlhickm/Compression_Power_Experiment/rapl_plot
-#make
-#sudo ./rapl_plot
-
-# Launch script in background
-#./my_script.sh &
-#cmd="pwd"
-#nohup $cmd &
-
-# Wait for 2 seconds
-#sleep 5
-#pwd
-#pwd
-#pwd
-#sleep 5
-# Here is where we will want to have a while loop
-# That waits until SZ is done compressing/decompressing
-
-# Kill this process
-#kill $PID
+python3 4-Subprocess.py 1-results.PACKAGE_ENERGY_PACKAGE0 1-results.PACKAGE_ENERGY_PACKAGE1 1-results.DRAM_ENERGY_PACKAGE0 1-results.DRAM_ENERGY_PACKAGE1 1-results.PP0_ENERGY_PACKAGE0 1-results.PP0_ENERGY_PACKAGE1 1-results.UNCORE_PACKAGE0 1-results.UNCORE_PACKAGE1

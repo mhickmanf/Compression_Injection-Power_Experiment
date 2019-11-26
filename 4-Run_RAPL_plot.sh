@@ -10,12 +10,14 @@ make
 # experiment_id
 mkdir exaalt_results
 
+# Compression information
+#['ABS_1e2','ABS_1e3','PW_1e2','PW_1e3','PSNR_30','PSNR_60']
 counter=1
 while [ $counter -le 5 ]
 do
 	echo $counter
 	((counter++))
-	python3 4-Subprocess.py exaalt_results/$counter-results.PACKAGE_ENERGY_PACKAGE0 exaalt_results/$counter-results.PACKAGE_ENERGY_PACKAGE1 exaalt_results/1-results.DRAM_ENERGY_PACKAGE0 exaalt_results/1-results.DRAM_ENERGY_PACKAGE1 exaalt_results/1-results.PP0_ENERGY_PACKAGE0 exaalt_results/1-results.PP0_ENERGY_PACKAGE1 exaalt_results/1-results.UNCORE_PACKAGE0 exaalt_results/1-results.UNCORE_PACKAGE1
+	python3 4-Subprocess.py exaalt_results/$counter-results.PACKAGE_ENERGY_PACKAGE0 exaalt_results/$counter-results.PACKAGE_ENERGY_PACKAGE1 exaalt_results/1-results.DRAM_ENERGY_PACKAGE0 exaalt_results/1-results.DRAM_ENERGY_PACKAGE1 exaalt_results/1-results.PP0_ENERGY_PACKAGE0 exaalt_results/1-results.PP0_ENERGY_PACKAGE1 exaalt_results/1-results.UNCORE_PACKAGE0 exaalt_results/1-results.UNCORE_PACKAGE1 ABS_1e2
 	# We only update variable name for package info bc that is all we are evaulating at the moment
 done
 echo All done

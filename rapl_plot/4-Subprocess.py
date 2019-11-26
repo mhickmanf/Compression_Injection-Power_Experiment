@@ -5,7 +5,18 @@ import signal
 import sys
 import random
 
-COMPRESSION_SIZE = 30
+# COMPRESSION SIZE LOOKUP TABLE
+# The bounds on byte location depends on variables
+COMPRESSION_SIZE = {
+    'ABS_1e2': 165724480,
+    'ABS_1e3': 282474401,
+    'PW_1e2': 81505624,
+    'PW_1e3': 138572647,
+    'PSNR_30': 70238798,
+    'PSNR_60': 75895303
+}
+#print(COMPRESSION_SIZE['ABS_1e2'])
+#COMPRESSION_SIZE = 30
 
 # Calls C Program, checks to see if it finished near instantly.
 # If not then wait the timeout period and check every .1 seconds.
@@ -36,13 +47,18 @@ def main():
             sys.argv[8],
     ]
 
-
-    byte_loc = random.randint(0,COMPRESSION_SIZE)
+    try: 
+        compression_arg = sys.argv[9]
+    catch:
+        print("Please enter a valid compression value: ['ABS_1e2','ABS_1e3','PW_1e2','PW_1e3','PSNR_30','PSNR_60']")
+        exit(0)
+    byte_loc = random.randint(0,COMPRESSION_SIZE[compression_arg])
     flip_loc = random.randint(0,7)
 
     print("Byte Location: ",byte_loc)
     print("Flip Location: ",flip_loc)
     SZcmd = ['bash', '/users/mlhickm/Compression_Injection-Power_Experiment/injection_experiments.sh', str(byte_loc), str(flip_loc)]
+    #SZcmd = ['bash', '/users/mlhickm/Compression_Injection-Power_Experiment/injection_experiments.sh', str(compression_arg), str(byte_loc), str(flip_loc)]
     timeout_limit = 7 # If taking too long bc injection broke stuff, go ahead and kill experiment
 
     rapl = subprocess.Popen(cmd, stdin = subprocess.PIPE, stdout=subprocess.PIPE)

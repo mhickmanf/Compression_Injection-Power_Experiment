@@ -49,7 +49,7 @@ def main():
 
     try: 
         compression_arg = sys.argv[9]
-    catch:
+    except:
         print("Please enter a valid compression value: ['ABS_1e2','ABS_1e3','PW_1e2','PW_1e3','PSNR_30','PSNR_60']")
         exit(0)
     byte_loc = random.randint(0,COMPRESSION_SIZE[compression_arg])
@@ -57,7 +57,7 @@ def main():
 
     print("Byte Location: ",byte_loc)
     print("Flip Location: ",flip_loc)
-    SZcmd = ['bash', '/users/mlhickm/Compression_Injection-Power_Experiment/injection_experiments.sh', str(byte_loc), str(flip_loc)]
+    SZcmd = ['bash', '/users/mlhickm/Compression_Injection-Power_Experiment/injection_experiments.sh', str(sys.argv[9]),  str(byte_loc), str(flip_loc)]
     #SZcmd = ['bash', '/users/mlhickm/Compression_Injection-Power_Experiment/injection_experiments.sh', str(compression_arg), str(byte_loc), str(flip_loc)]
     timeout_limit = 7 # If taking too long bc injection broke stuff, go ahead and kill experiment
 

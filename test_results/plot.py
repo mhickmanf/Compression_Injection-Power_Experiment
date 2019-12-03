@@ -1,6 +1,9 @@
 # Example Call
 	# python3 plot.py yes output_file.csv
 	# python3 plot.py no output_file.csv
+
+# Creates file "power_output.csv" that contains average power of each trial
+# 	
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -8,6 +11,8 @@ import pandas as pd
 import seaborn as sns
 import os
 import sys
+
+
 
 def str2bool(v):
 	if isinstance(v, bool):
@@ -25,13 +30,28 @@ def str2bool(v):
 def main():
 
 	plot = str2bool(sys.argv[1]) # True or False should we make a plot
-	
-	#input_files = sys.argv[1].split(',')
-	output_file = open(sys.argv[2], 'a')
+	#EXTENSION = "results.PACKAGE_ENERGY_PACKAGE1"
+	EXTENSION = sys.argv[2]
+	#FOLDER = "IDLE/exaalt_results"
+	#FOLDER = "EXPERIMENT_1/HACC/control_hacc/ABS_1e2/exaalt_results"
+	FOLDER = sys.argv[3]
 
-	for input_file in os.listdir("exaalt_results"):
-		if input_file.endswith("results.PACKAGE_ENERGY_PACKAGE0"):
-			input_file = os.path.join("exaalt_results/", input_file)
+	output_filename = "power_output.csv"
+	# Delete file if it exists, to not apend to old data
+	try:
+		os.remove(output_filename)
+	except:
+		pass
+
+	try:
+		output_file = open(output_filename,'a')
+	except:
+		print("File cannot be opened!", output_filename)
+		exit(0)
+
+	for input_file in os.listdir(FOLDER):
+		if input_file.endswith(EXTENSION):
+			input_file = os.path.join(FOLDER, input_file)
 			print ("Input File: ", input_file)
 			data = pd.read_csv(input_file, header=None, delim_whitespace=True) 
 			data = data.iloc[:, 0:2]
@@ -61,9 +81,15 @@ def main():
 	output_file.close()
 
 	# Calculate average of averages (total average of experiment)
-	data2 = pd.read_csv(sys.argv[2], header=None) 
-	average_average_power = data2[0].mean()
-	print("Average power of experiments = ",average_average_power,"\n")
+	data2 = pd.read_csv("power_output.csv", header=None) 
+	#average_average_power = data2[0].mean()
+	#standard_deviation_power = data[0].std()
+	print("/----- *** Results *** -----/")
+	print("Average power of experiments = ",data2[0].mean())
+	print("Maximum power of experiments = ",data2[0].max())
+	print("Minimum power of experiments = ",data2[0].min())
+	print("Standard Deviation           = ", data[0].std())
+	print("/--- *** End Results *** ---/\n")
 if __name__ == '__main__':
 	main()
 

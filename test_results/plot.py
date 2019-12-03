@@ -1,9 +1,10 @@
 # Example Call
-	# python3 plot.py yes output_file.csv
-	# python3 plot.py no output_file.csv
+	# python3 plot.py [plot] [EXTENSION - find file ending in] [FOLDER - to search in]
+	# python3 plot.py yes results.PACKAGE_ENERGY_PACKAGE1 EXPERIMENT_1/HACC/control_hacc/ABS_1e2/exaalt_results
+	# python3 plot.py no output_file.csv IDLE/exaalt_results results.PACKAGE_ENERGY_PACKAGE1
 
 # Creates file "power_output.csv" that contains average power of each trial
-# 	
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -84,11 +85,15 @@ def main():
 	data2 = pd.read_csv("power_output.csv", header=None) 
 	#average_average_power = data2[0].mean()
 	#standard_deviation_power = data[0].std()
+
+	# SAVE TO A FILE?????
+
 	print("/----- *** Results *** -----/")
+	print(FOLDER, EXTENSION)
 	print("Average power of experiments = ",data2[0].mean())
 	print("Maximum power of experiments = ",data2[0].max())
 	print("Minimum power of experiments = ",data2[0].min())
-	print("Standard Deviation           = ", data[0].std())
+	print("Standard Deviation           = ",data2[0].std())
 	print("/--- *** End Results *** ---/\n")
 if __name__ == '__main__':
 	main()

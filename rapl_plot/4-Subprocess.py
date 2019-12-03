@@ -15,8 +15,6 @@ COMPRESSION_SIZE = {
     'PSNR_30': 70238798,
     'PSNR_60': 75895303
 }
-#print(COMPRESSION_SIZE['ABS_1e2'])
-#COMPRESSION_SIZE = 30
 
 # Calls C Program, checks to see if it finished near instantly.
 # If not then wait the timeout period and check every .1 seconds.

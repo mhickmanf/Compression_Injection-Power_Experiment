@@ -8,6 +8,7 @@ import random
 # COMPRESSION SIZE LOOKUP TABLE
 # The bounds on byte location depends on variables
 COMPRESSION_SIZE = {
+    'IDLE': 1,
     'ABS_1e2': 165724480,
     'ABS_1e3': 282474401,
     'PW_1e2': 81505624,
@@ -70,7 +71,7 @@ def main():
     #print(p.communicate()) # You can use this to confirm that it worked
     #print("Ending SZ")
 
-    #p.kill()
+    #child_process_id.kill()
     print("Ending experiment...")
 
 

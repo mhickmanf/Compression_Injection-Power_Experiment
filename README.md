@@ -21,6 +21,17 @@ config/
 data/
     Folder containing the *small* datasets that we can use with SZ in our experiments.
 
+injection_experiments.sh
+    Bash script that will run a certain fault injection experiment based on inputs.
+    This file is called by rapl_plot/4-Subprocess.py so that the rapl power data is recorded for the experiment specified here.
+    
+    $ bash injection_experiments.sh [experiment_type] [byte_location] [flip_location]
+    Where experiment_type can be: IDLE, ABS_1e2, ABS_1e3, PW_1e2, PW_1e3, PSNR_30, PSNR_60
+    
+    Example calls:
+        $ bash injection_experiments.sh IDLE
+        $ bash injection_experiments.sh ABS_1e2 77 3
+
 Makefile
     The makefile to create comp_profile.
 

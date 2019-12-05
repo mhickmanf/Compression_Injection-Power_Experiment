@@ -28,7 +28,7 @@ then
         ./comp_inj /users/mlhickm/Compression_Injection-Power_Experiment/data/SDRBENCH_Data/EXAALT/xx.dat2 0,0,0,0,280953867 ./config/sz_psnr_30.config $2 $3
 elif [ "$1" = "PSNR_60" ]
 then
-        ./comp_inj /users/mlhickm/Compression_Injection-Power_Experiment/data/SDRBENCH_Data/EXALLT/xx.dat2 0,0,0,0,280953867 ./config/sz_psnr_60.config $2 $3
+        ./comp_inj /users/mlhickm/Compression_Injection-Power_Experiment/data/SDRBENCH_Data/EXAALT/xx.dat2 0,0,0,0,280953867 ./config/sz_psnr_60.config $2 $3
 else
 	echo "INVALID"
 fi

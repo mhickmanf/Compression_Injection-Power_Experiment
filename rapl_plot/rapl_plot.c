@@ -1,5 +1,6 @@
 /** 
  * @author  Vince Weaver
+ * Modified by: Megan Hickman Fulp
  */
 
 #include <stdio.h>

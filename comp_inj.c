@@ -15,7 +15,7 @@
 // Print out extra options (1 for True, 0 for False)
 int DEBUG = 0;
 // Inject into the compression (1 for True, 0 for False)
-int INJECT = 1;
+int INJECT = 0;
 
 // Initial Data Pointer
 float *DATA;
